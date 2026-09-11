@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Troll</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+        .calculadora {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
+            text-align: center;
+            width: 280px;
+        }
+        .tela {
+            width: 100%;
+            height: 50px;
+            background-color: #fff;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            text-align: right;
+            padding: 5px 10px;
+            box-sizing: border-box;
+            border: none;
+            border-radius: 5px;
+            color: #ff0000; /* Texto em vermelho para destacar o erro */
+            font-weight: bold;
+        }
+        .botoes {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        button {
+            padding: 15px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #eee;
+        }
+        button.operador {
+            background-color: #ff9500;
+            color: white;
+        }
+        button.igual {
+            background-color: #28a745;
+            color: white;
+            grid-column: span 2;
+        }
+        button.limpar {
+            background-color: #dc3545;
+            color: white;
+            grid-column: span 2;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calculadora">
+        <!-- Tela da calculadora -->
+        <input type="text" id="tela" class="tela" value="0" readonly>
+        
+        <!-- Botões -->
+        <div class="botoes">
+            <button class="limpar" onclick="limpar()">C</button>
+            <button class="operador" onclick="digitar('/')">/</button>
+            <button class="operador" onclick="digitar('*')">*</button>
+            
+            <button onclick="digitar('7')">7</button>
+            <button onclick="digitar('8')">8</button>
+            <button onclick="digitar('9')">9</button>
+            <button class="operador" onclick="digitar('-')">-</button>
+            
+            <button onclick="digitar('4')">4</button>
+            <button onclick="digitar('5')">5</button>
+            <button onclick="digitar('6')">6</button>
+            <button class="operador" onclick="digitar('+')">+</button>
+            
+            <button onclick="digitar('1')">1</button>
+            <button onclick="digitar('2')">2</button>
+            <button onclick="digitar('3')">3</button>
+            
+            <button onclick="digitar('0')">0</button>
+            <button class="igual" onclick="calcular()">=</button>
+        </div>
+    </div>
+
+    <script>
+        let tela = document.getElementById('tela');
+        
+        // Super lista com todos os memes e zoeiras reunidos!
+        let listaErros = [
+            "404: Cérebro não encontrado",
+            "Calcula você, tô de férias",
+            "Resultado: 42 (Confia)",
+            "Erro: Oitava série detectada",
+            "Sua conta foi fraca demais",
+            "Processando... Erro: Preguiça",
+            "Muita conta pra pouca cabeça",
+            "PIX de R$ 5,00 p/ ver o resultado",
+            "Assine o Premium por R$ 9,90/mês",
+            "Erro: Saldo insuficiente no cérebro",
+            "Conta bloqueada p/ excesso de exatas",
+            "Taxado pelo governo em 92%",
+            "Para quê você quer saber isso?",
+            "A resposta está no seu coração",
+            "Vai estudar!",
+            "Nem o ChatGPT sabe essa",
+            "Não sei, sou só uma calculadora",
+            "Sua mãe sabe que você faz essas contas?",
+            "Chama o Procon!",
+            "E o Pix? Nada ainda?"
+        ];
+
+        function digitar(valor) {
+            if (tela.value === "0" || listaErros.includes(tela.value)) {
+                tela.value = valor;
+            } else {
+                tela.value += valor;
+            }
+        }
+
+        function limpar() {
+            tela.value = "0";
+        }
+
+        function calcular() {
+            // Sorteia uma das mensagens de erro/meme
+            let erroAleatorio = listaErros[Math.floor(Math.random() * listaErros.length)];
+            tela.value = erroAleatorio;
+        }
+    </script>
+
+</body>
+</html>
